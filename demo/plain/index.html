@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="./style.css">
 </head>
 <body>
+<aside class="demo-notice" data-pagecue-ignore role="note">PageCue demo only. This is a fictional form: do not enter real personal, payment, or account information. Nothing is registered or charged.</aside>
 
 <header class="topbar">
   <div class="topbar-inner">
@@ -41,7 +42,7 @@
     </ul>
   </section>
 
-  <form class="reg-form" id="registration" method="post" action="#">
+  <form class="reg-form" id="registration" autocomplete="off">
 
     <fieldset class="group">
       <legend>Account</legend>
@@ -123,7 +124,7 @@
 
       <div class="field">
         <label for="cardholder-name">Cardholder name</label>
-        <input type="text" id="cardholder-name" name="cardholder_name" value="" autocomplete="cc-name" required>
+        <input type="text" id="cardholder-name" name="cardholder_name" value="" autocomplete="off" required>
       </div>
 
       <div class="field">
@@ -158,9 +159,8 @@
     </fieldset>
 
     <div class="actions">
-      <button type="submit" class="btn-primary">Submit registration</button>
-      <button type="button" class="btn-ghost">Save draft</button>
-      <p class="actions-note">Review usually completes within two business days.</p>
+      <button type="submit" class="btn-primary">Try demo submission</button>
+      <p class="actions-note" id="demo-status" role="status">Fictional form — nothing is saved or sent.</p>
     </div>
   </form>
 </main>
@@ -178,6 +178,7 @@
   </div>
 </footer>
 
+<script src="./demo.js" defer></script>
 <!-- pagecue: the only integration line this page has -->
 <script type="module">
   import { init } from '../../src/pagecue.js';

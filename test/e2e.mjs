@@ -142,6 +142,14 @@ test('source install on both example pages', async () => {
     const read = await page.evaluate(() => window.__registeredTools.find((tool) => tool.name === 'pagecue.read_page').execute({}));
     assert.equal(read.ok, true);
     assert.ok(read.page.sections.flatMap((s) => s.fields).length > 0);
+    assert.equal(await page.locator('aside[role="note"]').isVisible(), true, `${example} must identify fictional data`);
+    if (example === 'plain') {
+      assert.equal(await page.evaluate(() => {
+        const event = new Event('submit', { cancelable: true, bubbles: true });
+        document.getElementById('registration').dispatchEvent(event);
+        return event.defaultPrevented;
+      }), true, 'the public demo must not submit registration data');
+    }
     assert.deepEqual(errors, [], example);
     await context.close();
   }
