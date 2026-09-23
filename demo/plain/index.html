@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Voltpath — Developer Program Registration</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#">
+      <span class="brand-mark">//</span>
+      <span class="brand-name">Voltpath</span>
+    </a>
+    <nav class="nav">
+      <a href="#">Docs</a>
+      <a href="#">API Reference</a>
+      <a href="#">Pricing</a>
+      <a href="#">Status</a>
+      <a class="nav-cta" href="#">Sign in</a>
+    </nav>
+  </div>
+</header>
+
+<main class="shell">
+
+  <section class="hero">
+    <p class="eyebrow">Developer Program · 2026 Cohort</p>
+    <h1>Register for edge API access</h1>
+    <p class="lede">
+      Members get production keys, 99.95% routed uptime, and direct escalation to
+      the platform team. Registration takes about four minutes. Billing details are
+      required up front but the first 60 days are not charged.
+    </p>
+    <ul class="stat-strip" data-pagecue-ignore aria-hidden="true">
+      <li><b>18ms</b><span>p50 edge latency</span></li>
+      <li><b>41</b><span>regions</span></li>
+      <li><b>2.9B</b><span>calls / week</span></li>
+    </ul>
+  </section>
+
+  <form class="reg-form" id="registration" method="post" action="#">
+
+    <fieldset class="group">
+      <legend>Account</legend>
+      <p class="group-note">Who owns this integration. We use the work email for key rotation notices.</p>
+
+      <div class="field">
+        <label for="full-name">Full name</label>
+        <input type="text" id="full-name" name="full_name" value="Priya Raghunathan" required autocomplete="name">
+      </div>
+
+      <div class="field">
+        <label for="work-email">Work email</label>
+        <input type="email" id="work-email" name="work_email" value="priya.r@northgate,io" required autocomplete="email">
+        <span class="hint">Personal domains are rejected during review.</span>
+      </div>
+
+      <div class="field">
+        <label for="company">Company / organization</label>
+        <input type="text" id="company" name="company" value="Northgate Labs" required autocomplete="organization">
+      </div>
+
+      <div class="field">
+        <label for="team-size">Engineering team size</label>
+        <select id="team-size" name="team_size" required>
+          <option value="">Select a range…</option>
+          <option value="1">Just me</option>
+          <option value="2-9" selected>2 – 9</option>
+          <option value="10-49">10 – 49</option>
+          <option value="50-249">50 – 249</option>
+          <option value="250+">250+</option>
+        </select>
+      </div>
+    </fieldset>
+
+    <fieldset class="group">
+      <legend>Project</legend>
+      <p class="group-note">Tell us what you are building so we can size your rate limits.</p>
+
+      <div class="field">
+        <label for="project-name">Project name</label>
+        <input type="text" id="project-name" name="project_name" value="Relay Sync" required>
+      </div>
+
+      <div class="field">
+        <label for="platform">Primary platform</label>
+        <select id="platform" name="platform" required>
+          <option value="">Select a platform…</option>
+          <option value="web" selected>Web</option>
+          <option value="ios">iOS</option>
+          <option value="android">Android</option>
+          <option value="server">Server / backend</option>
+          <option value="embedded">Embedded / IoT</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="monthly-requests">Expected monthly requests</label>
+        <input type="number" id="monthly-requests" name="monthly_requests" value="250" min="1000" step="100" required>
+        <span class="hint">Program minimum is 1,000 requests per month.</span>
+      </div>
+
+      <div class="field">
+        <label for="description">What are you building?</label>
+        <textarea id="description" name="description" rows="4" required>Bidirectional sync layer between our warehouse and partner storefronts.</textarea>
+      </div>
+
+      <div class="field field-check">
+        <input type="checkbox" id="terms-accepted" name="terms_accepted" required>
+        <label for="terms-accepted">I have read and accept the Developer Terms of Use and the Acceptable Use Policy.</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="group group-billing" data-pagecue-protected>
+      <legend>Billing</legend>
+      <p class="group-note">
+        <span class="lock">Secured</span>
+        Stored with our payment processor. Nothing is charged during the trial period.
+      </p>
+
+      <div class="field">
+        <label for="cardholder-name">Cardholder name</label>
+        <input type="text" id="cardholder-name" name="cardholder_name" value="" autocomplete="cc-name" required>
+      </div>
+
+      <div class="field">
+        <label for="card-number">Card number</label>
+        <input type="text" id="card-number" name="card_number" value="4242 4242 42"
+               pattern="[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}"
+               placeholder="0000 0000 0000 0000" inputmode="numeric" autocomplete="cc-number" required>
+        <span class="hint">Sixteen digits, grouped in fours.</span>
+      </div>
+
+      <div class="field">
+        <label for="billing-zip">Billing ZIP</label>
+        <input type="text" id="billing-zip" name="billing_zip" value="94107"
+               pattern="[0-9]{5}(-[0-9]{4})?" inputmode="numeric" autocomplete="postal-code" required>
+      </div>
+    </fieldset>
+
+    <fieldset class="group">
+      <legend>Agreements</legend>
+      <p class="group-note">Final confirmations before we open your account.</p>
+
+      <div class="field field-check">
+        <input type="checkbox" id="marketing-optin" name="marketing_optin">
+        <label for="marketing-optin">Send me changelog digests and early-access invitations.</label>
+      </div>
+
+      <div class="field" data-pagecue-protected>
+        <label for="signed-name">Type your full name to sign</label>
+        <input type="text" id="signed-name" name="signed_name" value="" required autocomplete="off">
+        <span class="hint">This acts as your electronic signature on the agreements above.</span>
+      </div>
+    </fieldset>
+
+    <div class="actions">
+      <button type="submit" class="btn-primary">Submit registration</button>
+      <button type="button" class="btn-ghost">Save draft</button>
+      <p class="actions-note">Review usually completes within two business days.</p>
+    </div>
+  </form>
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <p class="footer-brand">Voltpath, Inc.</p>
+    <nav class="footer-nav">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Security</a>
+      <a href="#">Contact</a>
+    </nav>
+    <p class="footer-legal">© 2026 Voltpath, Inc. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- pagecue: the only integration line this page has -->
+<script type="module">
+  import { init } from '../../src/pagecue.js';
+  window.pagecue = init();
+</script>
+
+</body>
+</html>

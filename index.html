@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PageCue — guidance on the page, not edits by the agent</title>
+<style>
+  body { max-width: 740px; margin: 6vh auto; padding: 0 1.4rem; font: 17px/1.55 system-ui, sans-serif; color: #17263b; }
+  h1 { font-size: 3rem; letter-spacing: -.04em; margin-bottom: 0; }
+  .lead { font-size: 1.25rem; }
+  a { color: #164c91; }
+  a:focus-visible { outline: 3px solid #c75d22; }
+  .warning { padding: 1rem; background: #f4f0e6; border-left: 3px solid #bc682c; }
+  ul { padding-left: 1.5rem; }
+</style>
+<main>
+  <h1>PageCue</h1>
+  <p class="lead">Your browser agent can point, circle, guide and suggest on a live page. It cannot submit or commit a change through PageCue's tools.</p>
+  <p class="warning">Experimental WebMCP browser support is required. PageCue does not provide a chatbot, model connection, or fallback agent. Without WebMCP, these demos remain ordinary forms.</p>
+  <h2>Try the demos</h2>
+  <ul>
+    <li><a href="./demo/plain/">Plain HTML form</a> — labels and fieldsets, one-script setup.</li>
+    <li><a href="./demo/meridian/">Meridian app</a> — custom state and validation adapter.</li>
+  </ul>
+  <p>In an enabled browser, ask your own agent to read the page and draw guidance. Suggestions remain pending until an Accept click in the page UI. An agent with broader browser powers may click that button; PageCue does not attest that a human clicked it.</p>
+  <p><a href="https://github.com/xRME-18/pagecue">Source, install guide and limitations</a></p>
+</main>
+</html>
