@@ -16,8 +16,9 @@ jobs:
           node-version: '22'
           cache: npm
       - run: npm ci
-      - run: npx playwright install --with-deps chromium
+      - run: npx playwright install --with-deps chromium chrome
       - run: npm run check
+      - run: npm run test:native
       - run: 'if grep -REn "chat\.js|__pagecueTools|api/chat|localStorage" src demo types; then exit 1; fi'
   pages:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'

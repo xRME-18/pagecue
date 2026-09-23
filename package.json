@@ -1,26 +1,48 @@
 {
   "name": "pagecue",
-  "version": "0.1.0-beta.1",
+  "version": "0.1.0-beta.2",
   "description": "A read-and-draw guidance surface for a visitor's browser agent",
   "type": "module",
   "license": "Apache-2.0",
   "private": false,
-  "repository": { "type": "git", "url": "git+https://github.com/xRME-18/pagecue.git" },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xRME-18/pagecue.git"
+  },
   "homepage": "https://github.com/xRME-18/pagecue#readme",
   "bugs": "https://github.com/xRME-18/pagecue/issues",
   "exports": {
-    ".": { "types": "./types/index.d.ts", "import": "./dist/index.js" },
-    "./auto": { "types": "./types/auto.d.ts", "import": "./dist/auto.js" }
+    ".": {
+      "types": "./types/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./auto": {
+      "types": "./types/auto.d.ts",
+      "import": "./dist/auto.js"
+    }
   },
-  "files": ["dist", "types", "LICENSE", "README.md"],
-  "sideEffects": ["./dist/auto.js"],
+  "files": [
+    "dist",
+    "types",
+    "LICENSE",
+    "README.md"
+  ],
+  "sideEffects": [
+    "./dist/auto.js"
+  ],
   "scripts": {
     "build": "node scripts/build.mjs",
     "prepare": "npm run build",
     "test": "node test/run.mjs",
     "test:e2e": "node --test test/e2e.mjs",
+    "test:native": "PAGECUE_NATIVE=1 node --test test/e2e.mjs",
     "check": "npm run test && npm run build && npm run test:e2e && node scripts/check-size.mjs && npm pack --dry-run --json > /dev/null"
   },
-  "devDependencies": { "esbuild": "0.28.2", "playwright": "1.61.1" },
-  "engines": { "node": ">=22" }
+  "devDependencies": {
+    "esbuild": "0.28.2",
+    "playwright": "1.61.1"
+  },
+  "engines": {
+    "node": ">=22"
+  }
 }

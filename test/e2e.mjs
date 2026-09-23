@@ -155,6 +155,43 @@ test('source install on both example pages', async () => {
   }
 });
 
+if (process.env.PAGECUE_NATIVE === '1') {
+  test('real WebMCP registration and tool execution on ten layouts and two demos', async () => {
+    const nativeBrowser = await chromium.launch({
+      channel: 'chrome', headless: true,
+      args: ['--enable-features=WebMCPTesting,DevToolsWebMCPSupport'],
+    });
+    try {
+      for (const route of [...shapes.map((_, i) => `/fixture/${i}`), '/demo/plain/', '/demo/meridian/?harness=1']) {
+        const context = await nativeBrowser.newContext();
+        try {
+          const page = await context.newPage();
+          const errors = [];
+          page.on('pageerror', (error) => errors.push(error.message));
+          await page.goto(base + route);
+          await page.waitForFunction(() => !!(document.modelContext || navigator.modelContext) &&
+            !!(window.pagecue || window.__harness?.pagecue));
+          const result = await page.evaluate(async () => {
+            const mc = document.modelContext || navigator.modelContext;
+            const registered = await mc.getTools();
+            const reader = registered.find((tool) => tool.name === 'pagecue.read_page');
+            if (!reader) return { count: registered.length, error: 'missing read_page' };
+            const output = JSON.parse(await mc.executeTool(reader, '{}'));
+            return { count: registered.length, ok: output.ok,
+              fields: output.page?.sections?.flatMap((s) => s.fields).length,
+              surface: (window.pagecue || window.__harness?.pagecue).surface };
+          });
+          assert.equal(result.count, 11, `${route}: ${result.error || ''}`);
+          assert.equal(result.ok, true, route);
+          assert.ok(result.fields > 0 || route === '/fixture/8', route);
+          assert.notEqual(result.surface, 'none', route);
+          assert.deepEqual(errors, [], route);
+        } finally { await context.close(); }
+      }
+    } finally { await nativeBrowser.close(); }
+  });
+}
+
 test('tool registry works when a native WebMCP surface is provided', async () => {
   const context = await browser.newContext();
   await withModelContext(context);
